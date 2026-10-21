@@ -1,0 +1,977 @@
+/* ==========================================================================
+   VOXORA - Ultimate Premium Mobile Responsive System & Micro-Animations
+   100% Horizontal Scroll Proof with Fluid, Unblocked Vertical Scrolling
+   ========================================================================== */
+
+/* ==========================================================================
+   1. ROOT OVERFLOW SYSTEM (CLIPS HORIZONTAL OVERFLOW WITHOUT LOCKING SCROLL)
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+html {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: clip !important;
+  overflow-y: auto !important;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@supports not (overflow-x: clip) {
+  html {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+  body {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+}
+
+/* Ensure all major container blocks respect screen boundaries without nested scroll traps */
+.voxora-saas-root,
+.landing-view-wrapper,
+.studio-shell,
+.hero-container,
+.why-voxora-section,
+.studio-main-viewport,
+.wizard-card-wrapper,
+.dubbing-suite-wrapper,
+.saas-navbar,
+.features-2x2-grid,
+.hero-grid,
+.projects-page-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   2. LUXURY KEYFRAME ANIMATIONS & MICRO-INTERACTIONS
+   ========================================================================== */
+
+@keyframes voxoraFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes voxoraFadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes voxoraScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes voxoraPulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(40, 211, 249, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(40, 211, 249, 0.18);
+  }
+}
+
+@keyframes voxoraFloatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes voxoraShimmerSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes voxoraWaveformPulse {
+  0%, 100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes voxoraBorderGlow {
+  0%, 100% {
+    border-color: rgba(40, 211, 249, 0.3);
+    box-shadow: 0 0 12px rgba(40, 211, 249, 0.08);
+  }
+  50% {
+    border-color: rgba(0, 102, 255, 0.7);
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.22);
+  }
+}
+
+/* Application of Animations */
+.saas-navbar {
+  animation: voxoraFadeInDown 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-container {
+  animation: voxoraFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.why-voxora-section {
+  animation: voxoraFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.hero-visual-card {
+  animation: voxoraFloatSlow 6s ease-in-out infinite;
+}
+
+.feature-grid-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(0, 102, 255, 0.12);
+  border-color: rgba(0, 102, 255, 0.25);
+}
+
+.saas-btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.saas-btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.saas-btn-primary:hover::after {
+  animation: voxoraShimmerSweep 0.75s ease forwards;
+}
+
+.saas-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.35);
+}
+
+.hero-demo-btn {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-demo-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.hero-feature-item {
+  transition: transform 0.2s ease;
+}
+
+.hero-feature-item:hover {
+  transform: translateY(-2px);
+}
+
+.hero-badge {
+  animation: voxoraPulseGlow 3.5s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   3. MOBILE NAVIGATION DRAWER & TOPBAR (NO-LEAK SYSTEM)
+   ========================================================================== */
+
+/* Mobile header actions container */
+.saas-mobile-nav-actions {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.saas-mobile-quick-cta {
+  padding: 0.4rem 0.85rem !important;
+  font-size: 0.8rem !important;
+  border-radius: 9999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+}
+
+.saas-mobile-menu-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #334155;
+  transition: all 0.15s ease;
+}
+
+.saas-mobile-menu-toggle:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.saas-mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 199;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: voxoraFadeInUp 0.2s ease both;
+}
+
+/* Leak-proof Drawer: visibility hidden when closed prevents horizontal overflow & touch trapping */
+.saas-mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(320px, 86vw);
+  height: 100vh;
+  height: 100dvh;
+  background: #ffffff;
+  border-left: 1px solid #e2e8f0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s ease;
+  box-shadow: -8px 0 35px rgba(15, 23, 42, 0.14);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.saas-mobile-drawer.open {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.saas-mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.saas-mobile-menu-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #475569;
+  transition: all 0.15s ease;
+}
+
+.saas-mobile-menu-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.saas-mobile-nav-list {
+  flex: 1;
+  padding: 1rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  overflow-y: auto;
+}
+
+.saas-mobile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: #475569;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: all 0.15s ease;
+}
+
+.saas-mobile-nav-item:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.saas-mobile-nav-item.active {
+  background: rgba(0, 102, 255, 0.08);
+  color: #0066ff;
+}
+
+.mobile-nav-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #475569;
+}
+
+.saas-mobile-nav-item.active .mobile-nav-icon {
+  background: rgba(0, 102, 255, 0.1);
+  border-color: rgba(0, 102, 255, 0.25);
+  color: #0066ff;
+}
+
+.saas-mobile-drawer-footer {
+  padding: 1.15rem;
+  border-top: 1px solid #e2e8f0;
+  flex-shrink: 0;
+  background: #fafafa;
+}
+
+/* Dark mode adjustments for drawer */
+[data-theme="dark"] .saas-mobile-menu-toggle {
+  background: #131c33;
+  border-color: rgba(40, 211, 249, 0.2);
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .saas-mobile-drawer {
+  background: #0b111e;
+  border-color: rgba(40, 211, 249, 0.2);
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .saas-mobile-drawer-header,
+[data-theme="dark"] .saas-mobile-drawer-footer {
+  border-color: rgba(40, 211, 249, 0.15);
+  background: #0e1526;
+}
+
+[data-theme="dark"] .saas-mobile-menu-close {
+  background: #131c33;
+  border-color: rgba(40, 211, 249, 0.2);
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .saas-mobile-nav-item {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .saas-mobile-nav-item:hover {
+  background: #131c33;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .saas-mobile-nav-item.active {
+  background: rgba(40, 211, 249, 0.12);
+  color: #28d3f9;
+}
+
+[data-theme="dark"] .mobile-nav-icon {
+  background: #131c33;
+  border-color: rgba(40, 211, 249, 0.2);
+}
+
+/* ==========================================================================
+   4. RESPONSIVE BREAKPOINT: TABLET & MID SCREENS (<= 960px)
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  /* Navbar */
+  .saas-nav-links {
+    display: none !important;
+  }
+
+  .saas-nav-right {
+    display: none !important;
+  }
+
+  .saas-mobile-nav-actions {
+    display: flex !important;
+  }
+
+  .saas-navbar {
+    padding: 0 1.25rem !important;
+    height: 64px !important;
+  }
+
+  /* Hero Section */
+  .hero-container {
+    padding: 2.5rem 1.25rem 2.25rem 1.25rem !important;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.25rem !important;
+  }
+
+  .hero-left-content {
+    max-width: 100% !important;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 5.5vw, 3rem) !important;
+  }
+
+  .hero-floating-glass-badge {
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    bottom: 0.75rem !important;
+    max-width: calc(100% - 1.5rem) !important;
+  }
+
+  /* Studio Shell */
+  .studio-shell {
+    flex-direction: column !important;
+    min-height: calc(100vh - 64px) !important;
+  }
+
+  .studio-sidebar {
+    display: none !important;
+  }
+
+  .mobile-bottom-nav {
+    display: flex !important;
+  }
+
+  .studio-main-viewport {
+    padding: 1.25rem 1rem 5.5rem 1rem !important;
+    width: 100% !important;
+  }
+
+  .dubbing-suite-wrapper {
+    padding: 1rem 0.5rem 5.5rem 0.5rem !important;
+  }
+
+  .editor-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+}
+
+/* ==========================================================================
+   5. RESPONSIVE BREAKPOINT: MOBILE PHONES (<= 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .saas-navbar {
+    padding: 0 1rem !important;
+    height: 60px !important;
+  }
+
+  .saas-brand-logo {
+    height: 28px !important;
+  }
+
+  /* Hero Section */
+  .hero-container {
+    padding: 1.75rem 1rem 2rem 1rem !important;
+  }
+
+  .hero-title {
+    font-size: clamp(1.9rem, 6.5vw, 2.45rem) !important;
+    line-height: 1.16 !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .hero-subhead {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1.4rem !important;
+    max-width: 100% !important;
+  }
+
+  /* CTA Buttons: stack vertically on mobile to prevent overflow */
+  .hero-cta-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 0.7rem !important;
+    margin-bottom: 1.75rem !important;
+  }
+
+  .hero-cta-group .saas-btn-primary,
+  .hero-demo-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 0.78rem 1.2rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  /* Feature Badges Row */
+  .hero-feature-pills-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+    padding-top: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .hero-feature-item {
+    gap: 0.3rem !important;
+  }
+
+  .hero-feature-icon {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .hero-feature-label {
+    font-size: 0.75rem !important;
+  }
+
+  /* Social Proof: wrap to prevent horizontal spill */
+  .hero-social-proof {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 0.55rem !important;
+    width: 100% !important;
+  }
+
+  .hero-social-text {
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Visual Card */
+  .hero-visual-card {
+    border-radius: 18px !important;
+    padding: 0.6rem !important;
+    animation: none !important;
+  }
+
+  .hero-image-wrapper {
+    border-radius: 14px !important;
+  }
+
+  .hero-character-img {
+    height: 240px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .hero-play-overlay-btn {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .hero-floating-glass-badge {
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    bottom: 0.5rem !important;
+    padding: 0.55rem 0.8rem !important;
+    border-radius: 12px !important;
+    max-width: calc(100% - 1rem) !important;
+  }
+
+  .badge-wave-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .badge-text-title {
+    font-size: 0.8rem !important;
+  }
+
+  .badge-text-sub {
+    font-size: 0.7rem !important;
+  }
+
+  /* Why Voxora / Feature Grid */
+  .why-voxora-section {
+    padding: 0 1rem !important;
+    margin: 1.5rem auto 3rem auto !important;
+    width: 100% !important;
+  }
+
+  .section-headline {
+    font-size: clamp(1.45rem, 5vw, 1.85rem) !important;
+    line-height: 1.22 !important;
+  }
+
+  .section-subhead {
+    font-size: 0.88rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .features-2x2-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+    width: 100% !important;
+  }
+
+  .feature-grid-card {
+    padding: 1.25rem 1.15rem !important;
+    border-radius: 16px !important;
+  }
+
+  /* Wizard / Studio Steps (Upload, Voice, Generating, Editor) */
+  .saas-wizard-box {
+    padding: 1.25rem 1rem !important;
+    border-radius: 18px !important;
+    width: 100% !important;
+  }
+
+  .wizard-heading {
+    font-size: 1.32rem !important;
+  }
+
+  .wizard-subhead {
+    font-size: 0.825rem !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .dropzone-container {
+    padding: 1.35rem 0.85rem !important;
+    border-radius: 14px !important;
+  }
+
+  .dropzone-icon-box {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .script-saas-textarea {
+    font-size: 16px !important; /* Prevents auto zoom-in on iOS Safari */
+    min-height: 130px !important;
+    padding: 0.75rem 0.85rem !important;
+  }
+
+  .sample-scripts-pill-row,
+  .voice-filter-chips-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding-bottom: 0.35rem !important;
+    max-width: 100% !important;
+  }
+
+  .sample-scripts-pill-row::-webkit-scrollbar,
+  .voice-filter-chips-row::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .sample-chip,
+  .voice-filter-chip {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .voice-filters-header-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.65rem !important;
+  }
+
+  .voice-search-box-wrap {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .voice-search-input {
+    font-size: 16px !important;
+  }
+
+  .voice-list-stack {
+    max-height: 320px !important;
+    gap: 0.45rem !important;
+  }
+
+  .voice-row-card {
+    padding: 0.6rem 0.75rem !important;
+    border-radius: 14px !important;
+  }
+
+  .voice-meta-name {
+    font-size: 0.875rem !important;
+  }
+
+  .voice-meta-tags {
+    font-size: 0.7rem !important;
+    max-width: 140px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  /* Audio Player Card & Waveform */
+  .player-main-card,
+  .export-panel-card {
+    padding: 1.2rem 0.95rem !important;
+    border-radius: 16px !important;
+    width: 100% !important;
+  }
+
+  .player-waveform-box {
+    padding: 0.75rem 0.75rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .waveform-time-row {
+    gap: 0.45rem !important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .waveform-play-circle-btn {
+    width: 34px !important;
+    height: 34px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .waveform-visual-track {
+    height: 26px !important;
+    gap: 1px !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .waveform-tick {
+    min-width: 1.5px !important;
+  }
+
+  .waveform-time-counter {
+    font-size: 0.68rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .audio-controls-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Projects list item */
+  .projects-item-card {
+    padding: 0.9rem !important;
+    border-radius: 14px !important;
+  }
+
+  .project-item-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.65rem !important;
+  }
+
+  .project-open-link {
+    align-self: flex-end !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ==========================================================================
+   6. RESPONSIVE BREAKPOINT: ULTRA-COMPACT MOBILE PHONES (<= 480px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .saas-navbar {
+    padding: 0 0.75rem !important;
+    height: 54px !important;
+  }
+
+  .saas-brand-logo {
+    height: 24px !important;
+  }
+
+  .hero-container {
+    padding: 1.35rem 0.75rem 1.65rem 0.75rem !important;
+  }
+
+  .hero-title {
+    font-size: 1.72rem !important;
+    letter-spacing: -0.025em !important;
+  }
+
+  .hero-subhead {
+    font-size: 0.88rem !important;
+  }
+
+  .hero-character-img {
+    height: 200px !important;
+  }
+
+  .hero-feature-pills-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.55rem !important;
+  }
+
+  .section-headline {
+    font-size: 1.38rem !important;
+  }
+
+  .feature-grid-card {
+    padding: 1.1rem 0.95rem !important;
+  }
+
+  .saas-wizard-box {
+    padding: 1.05rem 0.8rem !important;
+  }
+
+  .studio-main-viewport {
+    padding: 1rem 0.75rem 5.5rem 0.75rem !important;
+  }
+
+  .audio-controls-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+  }
+}
+
+/* ==========================================================================
+   7. RESPONSIVE BREAKPOINT: TINY SCREENS (<= 360px)
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.55rem !important;
+  }
+
+  .hero-feature-pills-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .hero-character-img {
+    height: 175px !important;
+  }
+
+  .saas-mobile-quick-cta {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   8. ELEGANT CUSTOM SCROLLBAR & TOUCH OPTIMIZATIONS
+   ========================================================================== */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.4) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+[data-theme="dark"] *::-webkit-scrollbar-thumb {
+  background: rgba(40, 211, 249, 0.25);
+}
+
+[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
+  background: rgba(40, 211, 249, 0.45);
+}
+
+/* Touch devices: disable heavy hover transforms to prevent jerky tap states */
+@media (hover: none) and (pointer: coarse) {
+  .saas-btn-primary:hover,
+  .hero-demo-btn:hover,
+  .feature-grid-card:hover,
+  .hero-feature-item:hover,
+  .voice-row-card:hover {
+    transform: none !important;
+  }
+}
+
+/* Accessibility: respect user prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
