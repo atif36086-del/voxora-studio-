@@ -249,20 +249,36 @@ export const AnimeVoiceoverWorkflow: React.FC = () => {
     setIsMergingAudio(true);
 
     try {
+      // Optimize payload: Only include base64 for chunks that aren't already stored on the server disk
+      const payloadChunks = readyChunks.map((c) => ({
+        id: c.id,
+        audioBase64: c.audioUrl ? undefined : c.audioBase64,
+      }));
+
       const response = await fetch('/api/anime-script/merge-audio', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           projectId: project.id,
-          chunks: readyChunks.map((c) => ({
-            id: c.id,
-            audioBase64: c.audioBase64,
-          })),
+          chunks: payloadChunks,
           pauseMs: 350,
         }),
       });
 
-      const data = await response.json();
+      const text = await response.text();
+      let data: any = {};
+      try {
+        data = JSON.parse(text);
+      } catch {
+        // If server returned an HTML error page (e.g. 504 Timeout or 413 Payload Too Large)
+        throw new Error(
+          response.status === 504
+            ? 'Server timed out while merging audio. Please retry with fewer chunks or on localhost.'
+            : response.status === 413
+            ? 'Audio payload too large for the hosting provider.'
+            : `Server returned HTTP ${response.status} (${response.statusText || 'Gateway error'})`
+        );
+      }
 
       if (response.ok && data.success) {
         updateProject((prev) => ({

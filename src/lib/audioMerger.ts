@@ -231,11 +231,19 @@ export async function mergeAudioChunks(
   const durationSec = parseFloat((combinedPcm.length / byteRate).toFixed(2));
 
   // Encode to MP3 using @breezystack/lamejs
+  // Only attempt synchronous in-line MP3 encoding for audio <= 300 seconds (5 min)
+  // Long audio (e.g. 1-3 hours) encoded in pure JS on limited cloud vCPUs exceeds cloud gateway timeouts (504).
   let masterMp3: Buffer | null = null;
-  try {
-    masterMp3 = await encodePcmToMp3(combinedPcm, sampleRate, channels, 192);
-  } catch (err) {
-    console.error('MP3 encoding error:', err);
+  if (durationSec <= 300) {
+    try {
+      masterMp3 = await encodePcmToMp3(combinedPcm, sampleRate, channels, 192);
+    } catch (err) {
+      console.error('MP3 encoding error:', err);
+    }
+  } else {
+    console.log(
+      `Audio duration is ${durationSec}s (>300s). Skipping in-line pure JS MP3 encoding to prevent HTTP gateway timeout. Master WAV ready.`
+    );
   }
 
   const totalSizeMb = parseFloat(
